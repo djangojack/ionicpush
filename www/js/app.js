@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
 
     console.log(1);
@@ -22,6 +22,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
         console.log("NOTIFICATION!!!", notification, payload);
       },
       "onRegister": function(data) {
+        $rootScope.token = data.token;
         console.log(data.token);
       },
 
@@ -31,7 +32,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
           "sound": true
          },
          "android": {
-           // "icon": "notification", // this comes from the android/res/drawable folder
+           "icon": "notification", // this comes from the android/res/drawable folder
            "iconColor": "#1A96A9"
          }
       } 
