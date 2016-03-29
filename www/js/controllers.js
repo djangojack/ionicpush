@@ -24,7 +24,7 @@ angular.module('starter.controllers', [])
           "message": "Hello world!",
           "android": {
             "title": "Hey",
-            "message": "Hello Android!"
+            "message": "Hello Android! This content is longer and should pull down. hopefully it works. we shall see. it would be great if it worked. "
           },
           "ios": {
             "title": "Howdy",
