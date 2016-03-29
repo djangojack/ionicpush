@@ -9,6 +9,43 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
+
+    console.log(1);
+    // only work on mobile devices
+    if (!ionic.Platform.isWebView()) return;
+    console.log(2);
+
+    var push = new Ionic.Push({
+      "debug": false,
+      "onNotification": function(notification) {
+        var payload = notification.payload;
+        console.log("NOTIFICATION!!!", notification, payload);
+      },
+      "onRegister": function(data) {
+        console.log(data.token);
+      },
+
+      "pluginConfig": {
+        "ios": {
+          "badge": true,
+          "sound": true
+         },
+         "android": {
+           // "icon": "notification", // this comes from the android/res/drawable folder
+           "iconColor": "#1A96A9"
+         }
+      } 
+
+    });
+
+    push.register(function(token) {
+      push.saveToken(token, { 'ignore_user': true });
+    });
+
+
+
+
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
